@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation Confirmed</title>
+</head>
+<body>
+<h1>Hello <span th:text="${clientName}"></span>,</h1>
+<p>Your reservation for <strong th:text="${serviceName}"></strong> on <span th:text="${reservationDate}"></span> has been successfully confirmed!</p>
+<p>Your reservation ID is: <strong th:text="${reservationId}"></strong>.</p>
+<p>Best regards,</p>
+<p>The Reservations Team</p>
+</body>
+</html>
