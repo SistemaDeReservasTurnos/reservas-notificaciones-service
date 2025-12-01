@@ -31,6 +31,7 @@ public class NotificationService {
             log.error("Failed to send notification for email: {} of type: {}. Error: {}",
                     event.getRecipientEmail(), event.getNotificationType(), e.getMessage());
             // TODO: Implement retry logic or send to a Dead-Letter Queue (DLQ)
+            throw e;
         }
     }
 }
