@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Rejected</title>
+</head>
+<body>
+<h1>Hello <span th:text="${clientName}"></span>,</h1>
+<p>We regret to inform you that your payment for reservation <strong th:text="${reservationId}"></strong> has been rejected.</p>
+<p>The amount was: <span th:text="${amount}"></span>.</p>
+<p>Reason for rejection: <span th:text="${rejectionReason}"></span>.</p>
+<p>Please try again or contact support if you need assistance.</p>
+<p>Best regards,</p>
+<p>The Reservations Team</p>
+</body>
+</html>
