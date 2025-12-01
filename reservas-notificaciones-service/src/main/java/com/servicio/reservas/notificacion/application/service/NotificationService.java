@@ -17,6 +17,15 @@ public class NotificationService {
     private final EmailTemplateService emailTemplateService;
 
     public void processNotificationEvent(NotificationEvent event) {
+        if (event == null) {
+            log.error("NotificationEvent is null. Cannot process notification.");
+            return;
+        }
+        if (event.getRecipientEmail() == null || event.getNotificationType() == null || event.getTemplateModel() == null) {
+            log.error("NotificationEvent is missing required fields. recipientEmail: {}, notificationType: {}, templateModel: {}",
+                    event.getRecipientEmail(), event.getNotificationType(), event.getTemplateModel());
+            return;
+        }
         log.info("Processing notification event for email: {} of type: {}", event.getRecipientEmail(), event.getNotificationType());
 
         try {
