@@ -54,7 +54,7 @@ public class RabbitMQConfig {
                 .with(ROUTING_KEY_PAYMENT_REJECTED);
     }
 
-    // JSON Message Converter (deprecated but required in Spring Boot 4)
+    // JSON Message Converter for RabbitMQ messages
     @Bean
     public MessageConverter messageConverter() {
         return new Jackson2JsonMessageConverter();
