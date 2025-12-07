@@ -15,6 +15,7 @@ spec:
       labels:
         app: reservas-notificaciones-service
     spec:
+      serviceAccountName: noti-permissions-ksa
       containers:
         - name: reservas-notificaciones-service
           # nombre local de la imagen -> noti-service-local:latest (igual siempre )
@@ -27,12 +28,36 @@ spec:
             - name: SPRING_PROFILES_ACTIVE # -> para activar el perfil de cloud (configuraciones especificas para la nube)
               value: "cloud"
 
+            - name: SENDGRID_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sengrid-k8s
+                  key: SENDGRID_API_KEY
+
+            - name: SENDGRID_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: sengrid-k8s
+                  key: SENDGRID_NAME
+
+            - name: SENDGRID_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: sengrid-k8s
+                  key: SENDGRID_EMAIL
+
+            - name: URL_NOTIFICACION
+              valueFrom:
+                secretKeyRef:
+                  name: sengrid-k8s
+                  key: URL_NOTIFICACION
+
             - name: DB_HOST
               value: "127.0.0.1" # La aplicación se conecta al sidecar
             - name: DB_PORT
               value: "5432"     # Puerto que usa el sidecar
             - name: DB_USER   # El user es el email del GSA
-              value: "usa-permissions@studiobarber-480215.iam.gserviceaccount.com"
+              value: "noti-permissions@studiobarber-480215.iam.gserviceaccount.com"
 
             ## sidecar del proxy cloud sql auth
         - name: cloudsql-proxy
