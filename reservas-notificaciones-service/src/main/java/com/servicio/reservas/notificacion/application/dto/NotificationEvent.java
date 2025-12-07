@@ -14,6 +14,7 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class NotificationEvent implements Serializable {
+
     private String recipientEmail;
     private NotificationType notificationType;
     private Map<String, Object> templateModel; // Data for the email template
