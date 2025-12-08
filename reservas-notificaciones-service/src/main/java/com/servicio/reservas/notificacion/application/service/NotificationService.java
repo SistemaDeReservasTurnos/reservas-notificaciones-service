@@ -17,15 +17,6 @@ public class NotificationService {
     private final EmailTemplateService emailTemplateService;
 
     public void processNotificationEvent(NotificationEvent event) {
-        if (event == null) {
-            log.error("NotificationEvent is null. Cannot process notification.");
-            return;
-        }
-        if (event.getRecipientEmail() == null || event.getNotificationType() == null || event.getTemplateModel() == null) {
-            log.error("NotificationEvent is missing required fields. recipientEmail: {}, notificationType: {}, templateModel: {}",
-                    event.getRecipientEmail(), event.getNotificationType(), event.getTemplateModel());
-            return;
-        }
         log.info("Processing notification event for email: {} of type: {}", event.getRecipientEmail(), event.getNotificationType());
 
         try {
@@ -40,7 +31,7 @@ public class NotificationService {
             log.error("Failed to send notification for email: {} of type: {}. Error: {}",
                     event.getRecipientEmail(), event.getNotificationType(), e.getMessage());
             // TODO: Implement retry logic or send to a Dead-Letter Queue (DLQ)
-            throw e;
+
         }
     }
 }
